@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shelters</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+   
+
+        <div class="jumbotron text-center" style="margin-bottom:0">
+          <h1 style="color:Tomato;">CW</h1>
+        <p>Website to raise awareness of violence against Canadian women</p>
+          
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Canadian_Flag.png" alt="file:Canadian flag.png" width="190" height="120">
+        </div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="Home.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a href="defense.html">Protecting Yourself</a>
+          </li>
+        <li class="nav-item">
+          <a class="active" href="shelters.html"> Shelters</a>
+        </li>
+        <li class="nav-item">
+          <a  href="emergencynumbers.html">Hotlines</a>
+        </li>
+      </ul>
+    
+    
+    <div class="tab-content" ><h1>Find a Shelter Near You</h1></div>
+     <!--Scripts to load the shelter data-->
+    <script type="text/javascript" language="javascript" src="jquery-1.8.2.min.js"></script>        
+    <script type="text/javascript" language="javascript" src="shelter_data.json"></script> 
+ 
+    <div id="wrapper" style="text-align:center">
+    <!-- Form to enter their postal code -->
+    <form>
+        <label for="postal">Enter your postal code:</label><br>
+        <input type="text", id="postal_entry" >
+        <button id="enter" onclick="showShelters();return false;">Enter</button>
+    </form>
+    <script>
+        function showClicked()
+        { document.getElementById("enter").innerHTML="CLICKED";
+            return false;
+        }
+    </script>
+    <div id="mydata" style="text-align:center"></div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+    <script type="text/javascript">
+        // fetch('shelter_data.json').then(function (response) {
+        //     return response.json();
+        // })
+        // .then(function (data) {
+        //     showShelters(data);
+        // })
+        // .catch(function (err) {
+        //     console.log('error: ' + err);
+        // });    
+        
+        function showShelters()
+        {
+            postal = document.getElementById("postal_entry").value;
+            var shelter_data = [
+                {"name":"Betty's Haven", "postal": "Y1A 6K8", "phone":"867-668-5733", "website":"https://www.womenstransitionhome.ca/", "services": "Second stage, child and pet care offsite, wheelchair accessible"},
+                {"name":"Dawson Women's Shelter", "postal": "Y0B 1G0", "phone": "867-993-5086", "website":"https://www.dawsonwomensshelter.com/", "services": "Crisis communal, pet care offsite, child care"},
+                {"name":"Help and Hope for Families", "postal": "Y0A 1C0", "phone": "867-536-7233", "website":"https://www.helpandhopeforfamilies.ca/", "services": "Mixed Communal and Second Stage, pet care offsite, wheelchair accessible, child care"},
+                {"name":"Kaushee's Place", "postal": "Y1A 6K8", "phone":"867-668-5733", "website":"https://www.womenstransitionhome.ca/", "services": "Crisis communal, pet care offsite, wheelchair accessible"},
+                {"name":"Ross River Safe House", "postal": "Y0B 0A4", "phone":"867-969-2059", "website":"", "services": "Safe house, for women and children, child care, drop-in services, counsellors, trauma counsellors, weekly sewing get togethers, drumming, computer access, free wi-fi"},
+                {"name":"Adelle House Second Stage", "postal": "S7N 0Z2", "phone": "888-338-0880", "website": "https://saskatoonintervalhouse.org/", "services": "Second stage, offsite child and pet care, partly accessible"},
+                {"name":"Battlefords Interval House", "postal": "S9A 1H7", "phone": "306-445-2742", "website": "https://www.battlefordsintervalhouse.ca/"},
+                {"name": "Moose Jaw Transition House", "postal":"S6H 7N6", "phone":"306-693-6511","website":"https://www.mj-transitionhouse.com/"},
+                {"name":"Piwapan Women’s Centre","postal":"S0J 1L0", "phone":"306-425-4090", "website":"https://pwcprograms.com/"},
+                {"name":"Prince Albert Safe Shelter for Women", "postal":"S6V 8A4", "phone":"306-764-7233", "website":"https://www.pasafeshelter.ca/"},
+                {"name":"Qu'Appelle Haven Safe Shelter", "postal":" S0G 1S0", "phone":"306-332-8200","website":"https://fhqtc.com/"},
+                {"name":"Regina Transition House", "postal":"S4P 3B8", "phone":"306-569-2292","website":"http://www.reginatransitionhouse.ca/"},
+                {"name":"Shelwin House", "postal":"S3N 0A1", "phone":"306-783-7233","website":"https://shelwinhouse.ca/contact-us/#gsc.tab=0"},
+                {"name":"SOFIA House Inc", "postal":"S4S 7K4", "phone":"306-565-6060", "website":"https://sofiahouse.ca/"},
+                {"name":"Southwest Safe Shelte", "postal": "S9H 3X3","phone":"306-778-3386", "website":"https://www.swcrisis.ca/"},
+                {"name":"Qimavvik Transition House", "postal":"X0A 0H0", "phone":"867-979-4566"},
+                {"name":"Clearwater Safe Home and Second Stage", "postal":"V0E 1N1", "phone":"250-674-2600", "website":"https://www.yellowheadcs.ca/"},
+                {"name":"Boundary Women's Transition House","postal":"V0H 1H0", "phone":"250-442-3131","website":"http://www.bwcbc.ca/"},
+                {"name":"Abbotsford Transition House", "postal":"V2V 4J3", "phone":"604-820-8455"},
+                {"name":"Joie's Phoenix House", "postal":"T9M 1P1", "phone":"780-594-3353", "website":"https://steppingstonessociety.ca/"},
+                {"name":"Central Alberta Women's Emergency Shelter", "postal":"T0M 0J0", "phone":"403-346-5643", "website":"https://www.cawes.com/"},
+                {"name":"Mamewehetowin Crisis Centre", "website":"https://circlingbuffalo.ca/first-nation-shelters-in-manitoba/", "postal":"R3G 0R8", "phone":"204-599-4217"},
+                {"name":"Aurora House", "website":"https://www.aurorahouse-sharethecare.com/", "postal":"R9A 1S4", "phone":"204-623-5497"},
+                {"name":"Ikwe-Widdjitiwin", "website":"http://www.ikwe.ca/", "phone":"800-362-3344", "postal":"R3C 2X4"},
+                {"name":"Amy's Next Step Housing", "phone":"705-878-3662", "website":"https://womensresources.ca/", "postal":"K9V 2N6"},
+                {"name":"Anova Clarke Location", "phone":"519-642-3000", "website":"https://www.anovafuture.org/", "postal":"N6B 1L1"},
+                {"name":"Centre pour femmes Ellevive", "phone":"877-748-8452", "postal":"P4N 7G7", "website":"https://ellevive.ca/"},
+                {"name":"Domestic Abuse Services Oxford", "phone":"800-265-1938","website":"https://www.daso.ca/", "postal":"N4S 0A5"},
+                {"name":"L'Autre Chez-Soi", "phone":"819-685-0006", "website":"https://lautrechezsoi.com/", "postal":"J9H 5E7"},
+                {"name":"Inter-Val 1175", "phone":"514-933-8488", "website":"https://www.inter-val.ca/", "postal":"H1X 2X2"},
+                {"name":"Foyer Asperimowin de la Tuque", "phone":"819-523-8600", "website":"", "postal":"G9X 1K9"},
+                {"name":"Auberge Transition", "phone":"514-481-0495", "website":"https://www.aubergetransition.org/", "postal":"H4A 3P6"},
+                {"name":"Cara Transition House", "phone":"709-256-7707", "website":"http://carahouse.com/","postal":"A1V 1W7"},
+                {"name":"Hope Haven", "phone":"709-944-2200", "postal":"A2V 2K1", "website":"https://www.hopehaven.ca/"},
+                {"name":"Natuashish Women's Shelter and Safe House", "phone":"709-478-2390", "postal":"A0P 1L0", "website":""},
+                {"name":"Crossroads for Women Inc.", "phone":"506-853-0811", "website":"https://crossroadsforwomen.ca/en/", "postal":"E1C 8P9"},
+                {"name":"Woodstock Sanctuary House", "phone":"506-325-9452", "website":"https://www.sanctuaryhouse.ca/", "postal":"E7M 6B7"},
+                {"name":"Hestia House Inc", "phone":"506-634-7570", "website":"http://www.hestiahouse.ca/", "postal":"E2L 0E1"},
+                {"name":"L'Escale Madavic", "phone":"506-739-6265", "website":"https://www.escalemadavic.com/", "postal":"E3V 3L1"},
+                {"name":"Anderson House Second Stage Housing", "phone":"902-894-3354", "postal":"C1A 7M4","website":"https://www.fvps.ca/"},
+                {"name":"Anderson House", "phone":"902-892-0960", "website":"http://www.fvps.ca/anderson-house/", "postal":"C1A 7M4"},
+                {"name":"Chief Mary Bernard Memorial Women's Shelter", "phone":"902-598-9614", "website":"", "postal":"C0B 2C0"},
+                {"name":"Alice House", "phone":"902-466-8459", "website":"https://alicehouse.ca/", "postal":"B2Y 3Y5"},
+                {"name":"Harbour House", "phone":"902-543-3999","website":"https://harbour-house.ca/", "postal":"B4V 2W9"},
+                {"name":"Naomi Society", "phone":"902-863-3807", "website":"https://www.naomisociety.ca/", "postal":"B2G 2E3"}
+            ];
+
+            //We will put these into a table
+            var table = `<table border=1 align="center" style="width:85%">`;
+            // add a row for name and marks
+            table += `<tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Website</th>
+                    </tr>`;
+     
+            //String for the table 
+            var tr="";
+            const mainUL = document.createElement('ul');
+            mainUL.style.alignContent="center";
+            //mainUL.append(document.createElement('li').innerHTML = "test");
+            document.body.append(mainUL);
+            for(let i=0; i<shelter_data.length; i++)
+            {
+                if(postal.charAt(0)==shelter_data[i].postal.charAt(0))
+                {
+                    tr+="<tr>";
+                    tr+=`<td>${shelter_data[i].name}</td>`;
+                    tr+=`<td>${shelter_data[i].phone}</td>`;
+                    tr+=`<td>${shelter_data[i].website}</td>`;
+                    tr+="</tr>";
+                }
+                
+            }
+            table+= tr+"</table>";
+            
+            document.body.innerHTML+= table;
+            //document.body.appendChild(mainUL);
+        }
+    </script>
+    </div>
+</body>
+</html>
